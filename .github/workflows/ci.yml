@@ -1,30 +1,14 @@
-name: Python CI
+name: My First Workflow
 
 on:
   push:
 
 jobs:
-  build:
-
+  hello:
+    
     runs-on: ubuntu-latest
 
     steps:
 
-      - uses: actions/checkout@v4
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install Dependencies
-        run: pip install -r requirements.txt
-
-      - name: Show Files
-        run: ls -la
-
-      - name: Show Current Directory
-        run: pwd
-
-      - name: Show Flask App
-        run: cat app.py
+      - name: Say Hello
+        run: echo "hello Joel"
