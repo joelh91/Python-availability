@@ -17,11 +17,14 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Show Python Version
-        run: python --version
-
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
       - name: Show Files
         run: ls -la
+
+      - name: Show Current Directory
+        run: pwd
+
+      - name: Show Flask App
+        run: cat app.py
