@@ -5,7 +5,6 @@ on:
 
 env:
   IMAGE_NAME: joeh91/library
-  IMAGE_TAG: V8
 
 jobs:
   test:
@@ -44,10 +43,14 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: building image
-        run: docker build -t $IMAGE_NAME:$IMAGE_TAG .
+        run: |
+          docker build -t $IMAGE_NAME:latest
+          docker tag $IMAGE_NAME:latest $IMAGE_NAME:${{ github.sha }}   
 
       - name: docker push
-        run: docker push $IMAGE_NAME:$IMAGE_TAG
+        run: |
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:${{ github.sha }}
    
     
       
