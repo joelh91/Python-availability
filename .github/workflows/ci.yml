@@ -20,6 +20,6 @@ jobs:
         run: docker build -t joeh91/library:latest .
       
       - name: push docker image
-      - run: docker push joeh91/library:latest
+        run: docker push joeh91/library:latest
   
 
