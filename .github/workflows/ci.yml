@@ -5,7 +5,7 @@ on:
 
 env:
   IMAGE_NAME: joeh91/library
-  IMAGE_TAG: V6
+  IMAGE_TAG: v7
 
 jobs:
   build_and_push:
