@@ -1,22 +1,26 @@
-name: docker CI pipeline
+name: Docekr CI Pipeline
 
 on:
   push:
 
+env:
+  IMAGE_NAME: joeh91/library
+  IMAGE_TAG: V6
+
 jobs:
-  building_docker:
+  build_and_push
     runs-on: ubuntu-latest
     steps:
-      - name: checking code
-        uses: actions/checkout@v4
-      - name: login in dokcerhub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-      
-      - name: build docker image
-        run: docker build -t joeh91/library:v5 .
+    - name: checkout code
+    uses: actions/checkout@v4
     
-      - name: push docker
-        run: docker push joeh91/library:v5
+    - name: docker login
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: build docker image
+      run: docker build -t $IMAGE_NAME:IMAGE_TAG .
+
+    - name: docker push
+      run: docker push $IMAGE_NAME_IMAGE_TAG
