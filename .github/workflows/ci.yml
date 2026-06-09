@@ -1,25 +1,21 @@
-name: Docker CI pipeline
+name: docker CI pipeline
 
 on:
   push:
 
 jobs:
-  docker:
+  building and pushing docker:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout code
+      - name: checking code
         uses: actions/checkout@v4
-
-      - name: login to Docker Hub
-        uses: docker/login-action@v3
+      - name: set up docker
+        uses: docker/login-actions@v3
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: build docker image
+        run: docker build -t joeh91/files:v1 .
 
-      - name: push Docker image
-        run: docker build -t joeh91/library:latest .
-      
-      - name: push docker image
-        run: docker push joeh91/library:latest
-  
-
+      - name: docker push image
+        run: docker push joeh91/files:v1
