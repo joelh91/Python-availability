@@ -1,4 +1,8 @@
-venv
-.git
-__pycache__
+venv/
+.git/
+__pycache__/
+.pytest_cache/
 *.pyc
+Downloads/
+mymicroservice-cicd-main/
+project/

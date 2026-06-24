@@ -1,13 +1,17 @@
-FROM python:3.11-slim
+FROM python:3.12-slim
 
-WORKDIR app/
+RUN adduser joel
+
+WORKDIR /app
 
 COPY requirements.txt .
 
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY --chown=joel:joel . .
+
+USER joel
 
 EXPOSE 5001
 
-CMD ["python", "app.py"]
+CMD ["python", "app.py"]                         
